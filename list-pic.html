@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="main.css">
+<title>forever me and you 💖</title>
+</head>
+
+<iframe style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/3VF5FY85jdhfZ2cqUHVrGD?utm_source=generator" 
+width="300" height="80" frameBorder="0" 
+allowfullscreen="" 
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<body class="bg-pink-100 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+
+<h1 class="text-2xl mb-6">ความทรงจำของเรา 💕</h1>
+<div id="bg" class="fixed inset-0 bg-cover bg-center blur-2xl opacity-40"></div>
+
+<!-- Cards -->
+<div id="cardContainer" class="relative w-80 h-[500px]">
+    <img src="img-bf/pic1.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic2.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic3.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic4.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic5.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic6.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic7.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic8.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic9.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic10.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic11.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic12.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic13.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic14.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic15.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic16.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic17.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic18.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic19.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic20.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic21.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic22.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic23.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic24.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic25.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+    <img src="img-bf/pic26.jpg" class="card absolute w-full h-full object-cover rounded-2xl shadow-xl">
+
+</div>
+
+<p class="mt-6 text-pink-500 z-190">ปัดซ้าย/ขวาได้เลย 😳</p>
+
+<button onclick="location.href='final.html'" class="mt-6 bg-pink-400 text-white px-6 py-2 rounded-xl z-10">
+  ไปต่อ 💖
+</button>
+
+<script>
+const cards = document.querySelectorAll('.card');
+const bg = document.getElementById('bg');
+let current = 0;
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
+
+function updateBG() {
+  bg.style.backgroundImage = `url(${cards[current].src})`;
+}
+updateBG();
+
+
+function setTopCard() {
+  cards.forEach((c, i) => {
+    c.style.zIndex = cards.length - i;
+  });
+}
+setTopCard();
+
+function handleStart(e) {
+  isDragging = true;
+  startX = e.touches ? e.touches[0].clientX : e.clientX;
+}
+
+function handleMove(e) {
+  if (!isDragging) return;
+  currentX = e.touches ? e.touches[0].clientX : e.clientX;
+  let diff = currentX - startX;
+
+  const card = cards[current];
+  card.style.transform = `translateX(${diff}px) rotate(${diff/10}deg)`;
+}
+
+function handleEnd() {
+  if (!isDragging) return;
+  isDragging = false;
+
+  let diff = currentX - startX;
+  const card = cards[current];
+
+  if (Math.abs(diff) > 100) {
+    card.style.transition = '0.3s';
+    card.style.transform = `translateX(${diff > 0 ? 500 : -500}px) rotate(${diff/10}deg)`;
+
+    setTimeout(() => {
+      card.style.display = 'none';
+      current++;
+      if (current >= cards.length) current = 0;
+      resetCards();
+    }, 300);
+  } else {
+    // reset
+    card.style.transition = '0.3s';
+    card.style.transform = '';
+  }
+}
+
+function resetCards() {
+  cards.forEach(c => {
+    c.style.transform = '';
+    c.style.transition = '';
+  });
+}
+
+cards.forEach(card => {
+  card.addEventListener('mousedown', handleStart);
+  card.addEventListener('mousemove', handleMove);
+  card.addEventListener('mouseup', handleEnd);
+
+  card.addEventListener('touchstart', handleStart);
+  card.addEventListener('touchmove', handleMove);
+  card.addEventListener('touchend', handleEnd);
+});
+</script>
+
+</body>
+</html>

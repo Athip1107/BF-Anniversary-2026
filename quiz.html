@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="main.css">
+<title>forever me and you 💖</title>
+</head>
+
+<body class="bg-pink-100 min-h-screen flex items-center justify-center px-4">
+
+<!-- Card -->
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-md">
+
+  <h2 class="text-lg md:text-xl font-semibold mb-4 text-center">
+    ตอบคำถาม 💭
+  </h2>
+
+  <input id="q1" placeholder="ดูหนังครั้งแรกวันที่"
+    class="border p-3 w-full mb-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+
+  <input id="q2" placeholder="วันเกิดเค้า"
+    class="border p-3 w-full mb-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+
+  <input id="q3" placeholder="ชื่อแมว"
+    class="border p-3 w-full mb-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300">
+
+  <button onclick="check()" 
+    class="bg-pink-400 hover:bg-pink-500 text-white w-full py-3 rounded-xl transition">
+    ตอบ 💖
+  </button>
+
+  <p id="err" class="text-red-500 mt-3 text-center hidden">
+    เค้าเสียใจนะ 🥲
+  </p>
+
+</div>
+
+<!-- 🎵 Music -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 🎵 autoplay fix (มือถือ)
+const audio = document.getElementById("bgm");
+document.body.addEventListener("click", () => {
+  audio.play().catch(()=>{});
+}, { once: true });
+
+// 🔐 check answer
+function check(){
+  const a = q1.value.trim();
+  const b = q2.value.trim();
+  const c = q3.value.trim().toLowerCase();
+
+  if(a === "07/10/2568" && b === "11/07/2554" && c === "shiro"){
+    location.href = 'list-pic.html';
+  } else {
+    err.classList.remove('hidden');
+  }
+}
+</script>
+
+</body>
+</html>

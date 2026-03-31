@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="main.css">
+<title>forever me and you 💖</title>
+</head>
+<body class="bg-pink-50 text-center">
+
+<audio autoplay loop>
+  <source src="music.mp4" type="audio/mpeg">
+</audio>
+
+<div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+  <div class="bg-white p-6 rounded-xl">
+    <p class="mb-4">คิดถึงเค้ามั้ย 💕</p>
+    <button onclick="closePop()" class="bg-pink-400 text-white px-4 py-2 rounded">คิดถึงสิ!</button>
+  </div>
+</div>
+
+<script>
+function closePop(){ document.getElementById('popup').remove(); }
+
+setInterval(()=>{
+  let p = document.createElement('div');
+  p.innerText='💖';
+  p.style.position='fixed';
+  p.style.left=Math.random()*100+'vw';
+  p.style.top='100%';
+  document.body.appendChild(p);
+
+  let y=100;
+  const anim=setInterval(()=>{
+    y-=2;
+    p.style.top=y+'%';
+    if(y<0){clearInterval(anim);p.remove();}
+  },30);
+},200);
+</script>
+
+<div class="h-screen flex items-center justify-center">
+  <button onclick="location.href='letter.html'" class="bg-white p-6 rounded-xl shadow">ไปต่อ 💌</button>
+</div>
+
+</body>
+</html>
